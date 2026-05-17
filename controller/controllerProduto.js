@@ -46,4 +46,23 @@ const cria_post = async (req, res) => {
   }
 };
 
-module.exports = { cria_get, cria_post };
+const consulta = async (req, res) => {
+  try {
+    res.set('Cache-Control', 'no-store');
+    const id = parseInt(req.params.id);
+    if (!id || isNaN(id) || id <= 0) {
+      return res.status(400).render('error', { message: 'ID inválido.' });
+    }
+    const produto = await Produto.findByPk(id, {
+      include: [{ model: Categoria, as: 'categoria' }]
+    });
+    if (!produto) {
+      return res.status(404).render('error', { message: 'Produto não encontrado.' });
+    }
+    res.render('consulta_produto', { produto: produto.toJSON() });
+  } catch (err) {
+    res.status(500).render('error', { message: err.message });
+  }
+};
+
+module.exports = { cria_get, cria_post, consulta };
