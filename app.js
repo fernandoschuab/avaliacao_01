@@ -6,6 +6,7 @@ var logger = require('morgan');
 var hbs = require('hbs');
 
 var indexRouter = require('./routes/index');
+var seedRouter = require('./routes/rotasSeed');
 
 require('./model/modelos');
 
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/seed', seedRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
