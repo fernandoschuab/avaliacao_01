@@ -7,6 +7,7 @@ var hbs = require('hbs');
 
 var indexRouter = require('./routes/rotasIndex');
 var seedRouter = require('./routes/rotasSeed');
+var produtoRouter = require('./routes/rotasProduto');
 
 require('./model/modelos');
 
@@ -15,6 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+hbs.registerHelper('eq', (a, b) => a === b);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -24,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/seed', seedRouter);
+app.use('/produto', produtoRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
