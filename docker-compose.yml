@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-produtos
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: produtos
+      MYSQL_USER: avaliacao_fullstack
+      MYSQL_PASSWORD: avaliacao_fullstack
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_produtos_data:/var/lib/mysql
+
+volumes:
+  mysql_produtos_data:
