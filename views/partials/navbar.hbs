@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><i class="bi bi-shop"></i> ElectroStore</a>
+    <ul class="nav nav-pills nav-fill w-100">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/nossa-historia"><i class="bi bi-clock-history"></i> Nossa História</a>
+      </li>
+      {{#if user}}
+        {{#if ehAdmin}}
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/produto/cria"><i class="bi bi-plus-square"></i> Cadastrar Produto</a>
+          </li>
+        {{/if}}
+      {{/if}}
+    </ul>
+    <ul class="nav nav-pills nav-fill">
+      {{#if user}}
+        <li class="nav-item">
+          <span class="nav-link text-white"><i class="bi bi-person-circle"></i> {{user.nome}}</span>
+        </li>
+        <li class="nav-item">
+          <form action="/usuario/logout" method="POST" class="d-inline">
+            <button type="submit" class="nav-link text-white btn btn-link"><i class="bi bi-box-arrow-right"></i> Sair</button>
+          </form>
+        </li>
+      {{else}}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/usuario/login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/usuario/cadastro"><i class="bi bi-person-plus"></i> Cadastro Usuário</a>
+        </li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
