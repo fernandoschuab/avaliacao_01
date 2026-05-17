@@ -3,8 +3,12 @@ const passport = require('../config/passport');
 const { Usuario } = require('../model/modelos');
 
 const cadastro_get = (req, res) => {
-  res.set('Cache-Control', 'private, max-age=31536000, immutable');
-  res.render('cadastro_usuario');
+  try {
+    res.set('Cache-Control', 'private, max-age=31536000, immutable');
+    res.render('cadastro_usuario');
+  } catch (err) {
+    res.status(500).render('error', { message: err.message });
+  }
 };
 
 const cadastro_post = async (req, res) => {
@@ -34,13 +38,17 @@ const cadastro_post = async (req, res) => {
     const senha_hash = await bcrypt.hash(senha, 10);
     await Usuario.create({ nome, email, senha_hash, perfil: 'usuario' });
     res.redirect('/usuario/login');
-  } catch (err) {
+  } catch (err) { 
     res.status(500).render('error', { message: err.message });
   }
 };
 
 const login_get = (req, res) => {
-  res.render('login', { erro: req.flash ? req.flash('error') : null });
+  try {
+    res.render('login', { erro: req.flash ? req.flash('error') : null });
+  } catch (err) {
+    res.status(500).render('error', { message: err.message });
+  }
 };
 
 const login_post = passport.authenticate('local', {
