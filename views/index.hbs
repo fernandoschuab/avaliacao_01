@@ -21,18 +21,20 @@
             <a href="/produto/consulta/{{id}}" class="btn btn-primary btn-sm">
               <i class="bi bi-eye"></i> Consultar
             </a>
-            {{#if quantidade}}
-              <form action="/produto/venda/{{id}}" method="POST" class="d-inline">
-                <button type="submit" class="btn btn-danger btn-sm">
-                  <i class="bi bi-cart-dash"></i> Registrar Venda
+            {{#if ../ehLojista}}
+              {{#if quantidade}}
+                <form action="/produto/venda/{{id}}" method="POST" class="d-inline">
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="bi bi-cart-dash"></i> Registrar Venda
+                  </button>
+                </form>
+              {{/if}}
+              <form action="/produto/compra/{{id}}" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-success btn-sm">
+                  <i class="bi bi-cart-plus"></i> Registrar Compra
                 </button>
               </form>
             {{/if}}
-            <form action="/produto/compra/{{id}}" method="POST" class="d-inline">
-              <button type="submit" class="btn btn-success btn-sm">
-                <i class="bi bi-cart-plus"></i> Registrar Compra
-              </button>
-            </form>
           </td>
         </tr>
       {{/each}}

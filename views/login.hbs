@@ -1,0 +1,21 @@
+<div class="card p-4 mx-auto" style="max-width: 400px;">
+  <h4 class="mb-3">Login</h4>
+  {{#if erro}}
+    <div class="alert alert-danger">{{erro}}</div>
+  {{/if}}
+  <form action="/usuario/login" method="POST">
+    <div class="mb-3">
+      <label class="form-label">E-mail</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Senha</label>
+      <input type="password" name="senha" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+  </form>
+  <hr>
+  <p class="text-center mb-0">
+    Não tem conta? <a href="/usuario/cadastro">Cadastre-se</a>
+  </p>
+</div>

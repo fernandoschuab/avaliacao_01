@@ -1,0 +1,35 @@
+<div class="card p-4 mx-auto" style="max-width: 500px;">
+  <h4 class="mb-3">Cadastro de Usuário</h4>
+  {{#if erros}}
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        {{#each erros}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+  <form action="/usuario/cadastro" method="POST">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input type="text" name="nome" class="form-control" value="{{valores.nome}}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">E-mail</label>
+      <input type="email" name="email" class="form-control" value="{{valores.email}}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Senha</label>
+      <input type="password" name="senha" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirmar Senha</label>
+      <input type="password" name="confirmar_senha" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+  </form>
+  <hr>
+  <p class="text-center mb-0">
+    Já tem conta? <a href="/usuario/login">Faça login</a>
+  </p>
+</div>

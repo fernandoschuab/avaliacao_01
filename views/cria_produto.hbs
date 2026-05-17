@@ -47,17 +47,6 @@
         </select>
       </div>
     </div>
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <label class="form-label">Usuário Responsável</label>
-        <select name="usuario_id" class="form-select">
-          <option value="">Selecione...</option>
-          {{#each usuarios}}
-            <option value="{{id}}">{{nome}}</option>
-          {{/each}}
-        </select>
-      </div>
-    </div>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
     <a href="/" class="btn btn-secondary">Cancelar</a>
   </form>
