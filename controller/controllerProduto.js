@@ -65,4 +65,41 @@ const consulta = async (req, res) => {
   }
 };
 
-module.exports = { cria_get, cria_post, consulta };
+const venda = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (!id || isNaN(id) || id <= 0) {
+      return res.status(400).render('error', { message: 'ID inválido.' });
+    }
+    const produto = await Produto.findByPk(id);
+    if (!produto) {
+      return res.status(404).render('error', { message: 'Produto não encontrado.' });
+    }
+    if (produto.quantidade <= 0) {
+      return res.status(400).render('error', { message: 'Quantidade insuficiente para venda.' });
+    }
+    await produto.decrement('quantidade');
+    res.redirect('/');
+  } catch (err) {
+    res.status(500).render('error', { message: err.message });
+  }
+};
+
+const compra = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (!id || isNaN(id) || id <= 0) {
+      return res.status(400).render('error', { message: 'ID inválido.' });
+    }
+    const produto = await Produto.findByPk(id);
+    if (!produto) {
+      return res.status(404).render('error', { message: 'Produto não encontrado.' });
+    }
+    await produto.increment('quantidade');
+    res.redirect('/');
+  } catch (err) {
+    res.status(500).render('error', { message: err.message });
+  }
+};
+
+module.exports = { cria_get, cria_post, consulta, venda, compra };
