@@ -2,7 +2,7 @@ const { Produto, Categoria } = require('../model/modelos');
 
 const cria_get = async (req, res) => {
   try {
-    res.set('Cache-Control', 'private, max-age=5184000, must-revalidate');
+    res.set('Cache-Control', 'private, max-age=5270400, must-revalidate');
     const categorias = await Categoria.findAll();
     res.render('cria_produto', {
       categorias: categorias.map(c => c.toJSON())
@@ -26,7 +26,7 @@ const cria_post = async (req, res) => {
     if (!categoria_id) erros.push('Categoria é obrigatória');
 
     if (erros.length > 0) {
-      res.set('Cache-Control', 'private, max-age=5184000, must-revalidate');
+      res.set('Cache-Control', 'private, max-age=5270400, must-revalidate');
       const categorias = await Categoria.findAll();
       return res.status(400).render('cria_produto', {
         erros,
