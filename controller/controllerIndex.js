@@ -12,4 +12,13 @@ const tela_principal = async (req, res) => {
   }
 };
 
-module.exports = { tela_principal };
+const nossa_historia = (req, res) => {
+  try {
+    res.set('Cache-Control', 'public, max-age=25920000, must-revalidate');
+    res.render('nossa_historia');
+  } catch (err) {
+    res.status(500).render('error', { message: err.message });
+  }
+};
+
+module.exports = { tela_principal, nossa_historia };
