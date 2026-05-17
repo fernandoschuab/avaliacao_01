@@ -7,6 +7,8 @@ var hbs = require('hbs');
 
 var indexRouter = require('./routes/index');
 
+require('./model/modelos');
+
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
